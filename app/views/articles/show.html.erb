@@ -15,12 +15,7 @@
         <th></th>
     </tr>
 
-    <% @article.comments.each do |comment| %>
-    <tr>
-        <td><%= comment.commenter %></td>
-        <td><%= comment.body %></td>
-    </tr>
-    <% end %>
+    <%= render @article.comments %>
 </table>
 
 
@@ -35,19 +30,7 @@
 %>
 
 <h2> Add a comment </h2>
-<%= form_with model: [@article, @article.comments.build], local: true do |f| %>
-<p>
-    <%= f.label :commenter %><br>
-    <%= f.text_field :commenter %>
-</p>
-<p>
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-</p>
-<p>
-    <%= f.submit %>
-</p>
-<% end %>
+<%= render 'comments/form'%>
 
 <%= link_to  "Edit Article", edit_article_path(id:@article.id) %><br>
 <%= link_to  "Back", articles_path %>
