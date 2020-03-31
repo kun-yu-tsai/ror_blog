@@ -5,6 +5,10 @@ class ArticlesController < ApplicationController
 
     end
 
+    def new 
+        @article = Article.new
+    end
+
     def create
         @article = Article.new(permit_params)
         if @article.save
