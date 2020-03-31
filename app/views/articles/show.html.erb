@@ -8,3 +8,27 @@
   <strong>Text:</strong>
   <%= @article.text %>
 </p>
+
+<%# create a create-comment section here 
+  scope: article_comment
+  url: What is the best url for "create (POST)"? POST /articles/:id/comments
+  label commenter
+  text_filed commenter
+  label comment body
+  text_area comment body
+  submit button
+%>
+
+<%= form_with model: [@article, @article.comments.build], local: true do |f| %>
+  <p>
+    <%= f.label :commenter %><br>
+    <%= f.text_field :commenter %>
+  </p>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
