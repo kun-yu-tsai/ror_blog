@@ -1,4 +1,10 @@
 class ArticlesController < ApplicationController
+    def index
+        # get all articles from db. make that as an instance variable. then we can access that in our erb.
+        @articles = Article.all
+
+    end
+
     def create
         @article = Article.new(permit_params)
         @article.save
