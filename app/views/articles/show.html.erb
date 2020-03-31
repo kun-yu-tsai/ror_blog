@@ -1,13 +1,28 @@
+<p>
+    <strong>Title:</strong>
+    <%= @article.title %>
+</p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @article.title %>
+    <strong>Text:</strong>
+    <%= @article.text %>
 </p>
- 
-<p>
-  <strong>Text:</strong>
-  <%= @article.text %>
-</p>
+
+<table>
+    <tr>
+        <th>Commenter</th>
+        <th>Body</th>
+        <th></th>
+    </tr>
+
+    <% @article.comments.each do |comment| %>
+    <tr>
+        <td><%= comment.commenter %></td>
+        <td><%= comment.body %></td>
+    </tr>
+    <% end %>
+</table>
+
 
 <%# create a create-comment section here 
   scope: article_comment
@@ -19,16 +34,20 @@
   submit button
 %>
 
+<h2> Add a comment </h2>
 <%= form_with model: [@article, @article.comments.build], local: true do |f| %>
-  <p>
+<p>
     <%= f.label :commenter %><br>
     <%= f.text_field :commenter %>
-  </p>
-  <p>
+</p>
+<p>
     <%= f.label :body %><br>
     <%= f.text_area :body %>
-  </p>
-  <p>
+</p>
+<p>
     <%= f.submit %>
-  </p>
+</p>
 <% end %>
+
+<%= link_to  "Edit Article", edit_article_path(id:@article.id) %><br>
+<%= link_to  "Back", articles_path %>
