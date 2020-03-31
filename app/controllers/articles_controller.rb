@@ -7,8 +7,11 @@ class ArticlesController < ApplicationController
 
     def create
         @article = Article.new(permit_params)
-        @article.save
-        redirect_to @article
+        if @article.save
+            redirect_to @article  # this will hit /articles url
+        else
+            render 'new'
+        end
     end
 
     def show
